@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:sharefair/view_model/services/upload_and_id_services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,6 +10,9 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
+late FilePickerResult result1;
+late PlatformFile file1;
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -17,17 +22,17 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: 30),
         Center(
           child: Container(
-            height: 60,
-            width: 420,
+            height: kIsWeb ? 60 : MediaQuery.sizeOf(context).height * 0.06,
+            width: kIsWeb ? 420 : MediaQuery.sizeOf(context).width * 0.75,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black45),
                 borderRadius: BorderRadius.circular(25)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 20),
+                SizedBox(width: kIsWeb ? 20 : 0),
                 Icon(Icons.lock_outline_rounded),
-                SizedBox(width: 20),
+                SizedBox(width: kIsWeb ? 20 : 10),
                 RichText(
                     text: TextSpan(
                         text: 'We Care About ',
@@ -123,10 +128,10 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 40),
                     GestureDetector(
                       onTap: () async {
-                        FilePickerResult? result =
-                            await FilePicker.platform.pickFiles();
-                        if (result == null) return;
-                        final file = result.files.first;
+                        result1 = (await FilePicker.platform.pickFiles())!;
+                        file1 = result1.files.first;
+                        String ID = await UploadAndGetId().getId(file1);
+
                         //fix
                         showAdaptiveDialog(
                             context: context,
@@ -135,8 +140,8 @@ class _HomePageState extends State<HomePage> {
                                 title: Text('Selected File'),
                                 content: Text(
                                   'File Selected Successfully!\n'
-                                  'File Name: ${file.name}\n'
-                                  'Generated ID : id', //Todo
+                                  'File Name: ${file1.name}\n'
+                                  'Generated ID : ${ID}', //Todo
                                   // 'Size : ${(file.size / 1024).toStringAsFixed(2)} KB\n'
                                   // 'Extension: \'${file.extension}\'\n\n'
                                   // 'Path: \'.${file.path}\'',
@@ -144,10 +149,6 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               );
                             });
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => SecondPage()));
                       },
                       child: Container(
                           height: 50,

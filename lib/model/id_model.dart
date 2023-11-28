@@ -1,8 +1,10 @@
 class IdModel {
-  String message = '';
-  IdModel({required this.message});
+  String id;
+  String fileHash;
+  IdModel({required this.id, required this.fileHash});
 
   factory IdModel.fromJson(Map<String, String> json) {
-    return IdModel(message: json['message'] as String);
+    return IdModel(
+        id: json['id'] as String, fileHash: json['fileHash'] as String);
   }
 }

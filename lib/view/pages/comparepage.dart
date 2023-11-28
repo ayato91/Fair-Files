@@ -1,8 +1,8 @@
-// ignore_for_file: dead_code
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:sharefair/view_model/services/compare_service.dart';
 
 class ComparePage extends StatefulWidget {
   const ComparePage({super.key});
@@ -11,24 +11,30 @@ class ComparePage extends StatefulWidget {
   State<ComparePage> createState() => _ComparePageState();
 }
 
+late FilePickerResult result2;
+late PlatformFile file2;
+TextEditingController idController = TextEditingController();
+late String message;
+
 class _ComparePageState extends State<ComparePage> {
   @override
   Widget build(BuildContext context) {
-    bool isSecure = true;
     return Column(
       children: [
         SizedBox(height: 30),
         Center(
           child: Container(
-            height: MediaQuery.sizeOf(context).height * 0.06,
-            width: MediaQuery.sizeOf(context).width * 0.75,
+            height: kIsWeb ? 60 : MediaQuery.sizeOf(context).height * 0.06,
+            width: kIsWeb ? 420 : MediaQuery.sizeOf(context).width * 0.75,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black45),
                 borderRadius: BorderRadius.circular(25)),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(width: kIsWeb ? 20 : 0),
                 Icon(Icons.lock_outline_rounded),
+                SizedBox(width: kIsWeb ? 20 : 10),
                 RichText(
                     text: TextSpan(
                         text: 'We Care About ',
@@ -83,11 +89,12 @@ class _ComparePageState extends State<ComparePage> {
           padding: EdgeInsets.symmetric(horizontal: 35),
           height: 55,
           child: TextFormField(
+              controller: idController,
+              onTapOutside: (event) => FocusScope.of(context).unfocus(),
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 2),
                       borderRadius: BorderRadius.circular(10)))),
         ),
         SizedBox(height: 22),
@@ -124,39 +131,74 @@ class _ComparePageState extends State<ComparePage> {
                               fontSize: 28, fontWeight: FontWeight.w500)),
                       SizedBox(height: 40),
                       GestureDetector(
-                        onTap: () async {
-                          FilePickerResult? result =
-                              await FilePicker.platform.pickFiles();
-                          if (result == null) return;
-                          final file = result.files.first;
-                          showAdaptiveDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog.adaptive(
-                                  backgroundColor: Colors.red.shade200,
-                                  title: Text(
-                                    'Verification Complete!',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  icon: Icon(
-                                    isSecure ? Icons.check : Icons.close,
-                                    size: 50,
-                                    color: isSecure ? Colors.green : Colors.red,
-                                  ),
-                                  content: Text(
-                                    isSecure
-                                        ? 'Hashes Matched Successfully!\n'
-                                            'File Name: ${file.name}\n'
-                                            'The File Received is Secure!!'
-                                        : 'Hashes DO NOT Match!\n'
-                                            'File Name: ${file.name}\n'
-                                            'Please Check the received file, it may have been tampered with!!',
-                                    style: TextStyle(fontSize: 22),
-                                  ),
-                                );
-                              });
-                        },
+                        onTap: idController.text.length != 6
+                            ? () {
+                                showAdaptiveDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog.adaptive(
+                                          icon: Icon(Icons.warning_outlined,
+                                              size: 50,
+                                              color: Colors.deepPurpleAccent),
+                                          backgroundColor: Color(0xFFDBECEE),
+                                          content: Text(
+                                              idController.text.isEmpty
+                                                  ? 'Please Enter The ID'
+                                                  : 'Please Enter Valid ID',
+                                              style: TextStyle(fontSize: 30)),
+                                        ));
+                                ;
+                              }
+                            : () async {
+                                result2 =
+                                    (await FilePicker.platform.pickFiles())!;
+                                file2 = result2.files.first;
+                                message = await CompareResult()
+                                    .getResult(file2, idController.text);
+                                showAdaptiveDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog.adaptive(
+                                        backgroundColor: message == '0'
+                                            ? Colors.green.shade200
+                                            : message == '1'
+                                                ? Colors.red.shade200
+                                                : Colors.yellow.shade200,
+                                        title: Text(
+                                          message == '2'
+                                              ? 'Verification Error!!'
+                                              : 'Verification Complete!',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        icon: Icon(
+                                          message == '0'
+                                              ? Icons.check
+                                              : message == '1'
+                                                  ? Icons.close
+                                                  : Icons.warning_amber,
+                                          color: message == '0'
+                                              ? Colors.green
+                                              : message == '1'
+                                                  ? Colors.red
+                                                  : Colors.amber,
+                                          size: 50,
+                                        ),
+                                        content: Text(
+                                          message == '0'
+                                              ? 'Hashes Matched Successfully!\n'
+                                                  'File Name: ${file2.name}\n'
+                                                  'The File Received is Secure!!'
+                                              : message == '1'
+                                                  ? 'Hashes DO NOT Match!\n'
+                                                      'File Name: ${file2.name}\n'
+                                                      'Please Check the received file,'
+                                                      ' it may have been tampered with!!'
+                                                  : 'ID Not Found',
+                                          style: TextStyle(fontSize: 22),
+                                        ),
+                                      );
+                                    });
+                              },
                         child: Container(
                             height: 50,
                             width: 150,

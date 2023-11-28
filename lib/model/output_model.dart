@@ -1,8 +1,8 @@
 class OutputModel {
-  bool output;
-  OutputModel({required this.output});
+  String message;
+  OutputModel({required this.message});
 
-  factory OutputModel.fromJson(Map<String, bool> json) {
-    return OutputModel(output: json['output'] as bool);
+  factory OutputModel.fromJson(Map<String, String> json) {
+    return OutputModel(message: json['message'] as String);
   }
 }
