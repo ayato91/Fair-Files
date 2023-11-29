@@ -19,8 +19,8 @@ class UploadAndGetId {
         return 'Error!';
       }
     } catch (e) {
-      print('Error : $e');
-      return e.toString();
+      print(e.toString());
+      return 'Connection Timed Out! Please Try Again Later.';
     }
   }
 }

@@ -11,8 +11,9 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-late FilePickerResult result1;
-late PlatformFile file1;
+late String ID;
+List selectedFiles = [];
+List<String> fetchedID = [];
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -128,20 +129,21 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 40),
                     GestureDetector(
                       onTap: () async {
-                        result1 = (await FilePicker.platform.pickFiles())!;
-                        file1 = result1.files.first;
-                        String ID = await UploadAndGetId().getId(file1);
-
-                        //fix
+                        FilePickerResult result1 =
+                            (await FilePicker.platform.pickFiles())!;
+                        PlatformFile file1 = result1.files.first;
+                        ID = await UploadAndGetId().getId(file1);
                         showAdaptiveDialog(
                             context: context,
                             builder: (context) {
+                              selectedFiles.add(file1.name);
+                              fetchedID.add(ID);
                               return AlertDialog.adaptive(
                                 title: Text('Selected File'),
                                 content: Text(
                                   'File Selected Successfully!\n'
                                   'File Name: ${file1.name}\n'
-                                  'Generated ID : ${ID}', //Todo
+                                  'Generated ID : ${ID}',
                                   // 'Size : ${(file.size / 1024).toStringAsFixed(2)} KB\n'
                                   // 'Extension: \'${file.extension}\'\n\n'
                                   // 'Path: \'.${file.path}\'',

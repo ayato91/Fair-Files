@@ -11,10 +11,7 @@ class ComparePage extends StatefulWidget {
   State<ComparePage> createState() => _ComparePageState();
 }
 
-late FilePickerResult result2;
-late PlatformFile file2;
 TextEditingController idController = TextEditingController();
-late String message;
 
 class _ComparePageState extends State<ComparePage> {
   @override
@@ -149,10 +146,10 @@ class _ComparePageState extends State<ComparePage> {
                                 ;
                               }
                             : () async {
-                                result2 =
+                                FilePickerResult result2 =
                                     (await FilePicker.platform.pickFiles())!;
-                                file2 = result2.files.first;
-                                message = await CompareResult()
+                                PlatformFile file2 = result2.files.first;
+                                String message = await CompareResult()
                                     .getResult(file2, idController.text);
                                 showAdaptiveDialog(
                                     context: context,
