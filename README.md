@@ -1,8 +1,8 @@
 # Fair Files
 A FIC (File Integrity Checker) App for checking the Integrity of a file and tells the user if the file content has been modified or not. 
-<!-- ## Screenshots
+## Screenshots
 
-![App Body]() -->
+![App Body](assets\image.png)
 
 <!-- ## Overview
 

@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-late String ID;
+String ID = '';
 List selectedFiles = [];
 List<String> fetchedID = [];
 

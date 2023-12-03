@@ -17,7 +17,9 @@ class HistoryPage extends StatelessWidget {
                     title: Text('File Name -> ${selectedFiles[index]}',
                         style: TextStyle(fontSize: 18)),
                     subtitle: Text('Generated ID -> ${fetchedID[index]}',
-                        style: TextStyle(fontSize: 20, color: Colors.black)));
+                        style: TextStyle(fontSize: 20, color: Colors.black)),
+                        onTap: () {},
+                        );
               },
             ),
           ))
@@ -26,9 +28,16 @@ class HistoryPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.delete_forever_outlined, size: 100),
+                ShaderMask(
+                  shaderCallback: (bounds) => LinearGradient(
+                          transform: GradientRotation(0.9),
+                          colors: [Colors.blue, Colors.deepPurple.shade300])
+                      .createShader(bounds),
+                  child: Icon(Icons.delete_forever_outlined,
+                      size: 100, color: Colors.white),
+                ),
                 SizedBox(height: 40),
-                Text('Nothing Here to Show', style: TextStyle(fontSize: 25)),
+                Text('Nothing Here to Show', style: TextStyle(fontSize: 26)),
               ],
             ),
           );

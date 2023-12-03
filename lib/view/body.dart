@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage> {
           appBar: AppBar(
             elevation: 10,
             centerTitle: true,
-            title: Text('PURE FILES',
+            title: Text('FAIR FILES',
                 style: TextStyle(
                     color: Colors.black87, fontWeight: FontWeight.w600)),
           ),
