@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:sharefair/view_model/services/upload_and_id_services.dart';
+import 'package:fair_files/view_model/services/upload_and_id_services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

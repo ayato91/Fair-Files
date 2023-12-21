@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sharefair/view/pages/comparepage.dart';
-import 'package:sharefair/view/pages/historypage.dart';
-import 'package:sharefair/view/pages/homepage.dart';
-import 'package:sharefair/view_model/bloc/navbarcubit.dart';
-import 'package:sharefair/view_model/bloc/navbarstate.dart';
+import 'package:fair_files/view/pages/comparepage.dart';
+import 'package:fair_files/view/pages/historypage.dart';
+import 'package:fair_files/view/pages/homepage.dart';
+import 'package:fair_files/view_model/bloc/navbarcubit.dart';
+import 'package:fair_files/view_model/bloc/navbarstate.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
