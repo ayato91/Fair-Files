@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sharefair/view/body.dart';
-import 'package:sharefair/view_model/bloc/navbarcubit.dart';
+import 'package:fair_files/view/body.dart';
+import 'package:fair_files/view_model/bloc/navbarcubit.dart';
 
 void main() {
   runApp(const MyApp());

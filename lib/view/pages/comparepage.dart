@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:sharefair/view_model/services/compare_service.dart';
+import 'package:fair_files/view_model/services/compare_service.dart';
 
 class ComparePage extends StatefulWidget {
   const ComparePage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sharefair/view_model/bloc/navbarstate.dart';
+import 'package:fair_files/view_model/bloc/navbarstate.dart';
 
 class NavBarCubit extends Cubit<NavBarState> {
   NavBarCubit() : super(NavBarInitial());

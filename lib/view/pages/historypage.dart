@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sharefair/view/pages/homepage.dart';
+import 'package:fair_files/view/pages/homepage.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
@@ -14,12 +14,12 @@ class HistoryPage extends StatelessWidget {
               itemCount: fetchedID.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                    title: Text('File Name -> ${selectedFiles[index]}',
-                        style: TextStyle(fontSize: 18)),
-                    subtitle: Text('Generated ID -> ${fetchedID[index]}',
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
-                        onTap: () {},
-                        );
+                  title: Text('File Name -> ${selectedFiles[index]}',
+                      style: TextStyle(fontSize: 18)),
+                  subtitle: Text('Generated ID -> ${fetchedID[index]}',
+                      style: TextStyle(fontSize: 20, color: Colors.black)),
+                  onTap: () {},
+                );
               },
             ),
           ))
