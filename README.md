@@ -1,5 +1,6 @@
 # Fair Files
-A FIS (File Integrity Surveillance) App for checking the Integrity of a file and make sure the user if the file content has been modified or not. BLAKE-2b Algorithm is used for checking the Integrity of files.
+A FIS (File Integrity Surveillance) App for checking the Integrity of a file and make sure if the file content has been modified or not. 
+BLAKE-2b Algorithm is used for checking the Integrity of files.
 
 ## Screenshots
 
