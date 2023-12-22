@@ -14,9 +14,9 @@ class HistoryPage extends StatelessWidget {
               itemCount: fetchedID.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text('File Name -> ${selectedFiles[index]}',
+                  title: Text('File Name -> ${selectedFiles.reversed.toList()[index]}',
                       style: TextStyle(fontSize: 18)),
-                  subtitle: Text('Generated ID -> ${fetchedID[index]}',
+                  subtitle: Text('Generated ID -> ${fetchedID.reversed.toList()[index]}',
                       style: TextStyle(fontSize: 20, color: Colors.black)),
                   onTap: () {},
                 );
