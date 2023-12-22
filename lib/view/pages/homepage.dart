@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: 30),
         Center(
           child: Container(
-            height: kIsWeb ? 60 : MediaQuery.sizeOf(context).height * 0.06,
-            width: kIsWeb ? 420 : MediaQuery.sizeOf(context).width * 0.75,
+            height: kIsWeb ? 60 : 50,
+            width: kIsWeb ? 420 : 310,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black45),
                 borderRadius: BorderRadius.circular(25)),

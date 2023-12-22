@@ -46,7 +46,7 @@ class _MainPageState extends State<MainPage> {
                                     color: Colors.deepPurpleAccent, width: 3)
                                 : BorderSide.none)),
                     child: NavigationDestination(
-                        icon: Icon(Icons.home), label: '')),
+                        icon: Icon(Icons.home, size: 28), label: '')),
                 Container(
                     margin: EdgeInsets.all(15),
                     decoration: ShapeDecoration(
@@ -56,7 +56,7 @@ class _MainPageState extends State<MainPage> {
                                     color: Colors.deepPurpleAccent, width: 3)
                                 : BorderSide.none)),
                     child: NavigationDestination(
-                        icon: Icon(Icons.compare), label: '')),
+                        icon: Icon(Icons.compare, size: 28), label: '')),
                 Container(
                     margin: EdgeInsets.all(15),
                     decoration: ShapeDecoration(
@@ -66,7 +66,7 @@ class _MainPageState extends State<MainPage> {
                                     color: Colors.deepPurpleAccent, width: 3)
                                 : BorderSide.none)),
                     child: NavigationDestination(
-                        icon: Icon(Icons.history_sharp, size: 26), label: '')),
+                        icon: Icon(Icons.history_sharp, size: 30), label: '')),
               ]),
         );
       },
