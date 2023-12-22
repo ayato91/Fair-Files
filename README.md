@@ -1,18 +1,31 @@
 # Fair Files
-A FIC (File Integrity Checker) App for checking the Integrity of a file and tells the user if the file content has been modified or not. 
+A FIS (File Integrity Surveillance) App for checking the Integrity of a file and make sure the user if the file content has been modified or not. BLAKE-2b Algorithm is used for checking the Integrity of files.
+
 ## Screenshots
 
-![App Body](assets/image.png)
+|           Initial Look            |
+|:---------------------------------:|
+|  ![App Body](assets/image.png)    |
+|             Features              |
+|  ![App Body](assets/image2.png)   |
+|      Integrity Check Issues       |
+|  ![App Body](assets/image3.png)   |
 
-<!-- ## Overview
+## Features
 
-- **Optimized State Management**: *Flutter Bloc* is used for optimized state management of the app. 
+- **Easy to Use**: Upload a file to get a *unique ID*. Use that ID and File to *check its integrity*.
 
-- **User Friendly UI**: Clean and intuitive User Interface(UI), different status releted messages for better user experience. -->
+- **History Feature**: File Name and its associated ID can be shown in *History* tab. 
+
+- **User Friendly UI**: Clean and intuitive User Interface(UI), different status releted messages for better user experience.
+
+## API Resources
+
+Used [GO-FIS-API](https://github.com/justsaumit/go-fis-api) for backend services. 
 
 ## Getting Started
 
-To test this FIC(File Integrity Checker) App, follow these steps:
+To test this FIS (File Integrity Surveillance) App, follow these steps:
 
 1. **Clone the Repository**: Clone this repository to your local machine using Git.
 ```
@@ -31,7 +44,7 @@ To test this FIC(File Integrity Checker) App, follow these steps:
     $ flutter run
 ```
 
-5. **Start Exploring**: Select a file to generate a unique ID. Use the ID along with the file to check the integrity of that file.
+5. **Start Exploring**: Select files, generate IDs and check their integrity.
 
 
 ## Dependencies
